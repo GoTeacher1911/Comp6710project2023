@@ -1,0 +1,23 @@
+touch .git/hooks/pre-commit
+chmod +x .git/hooks/pre-commit
+#!/bin/bash
+
+# Save output to a CSV file
+OUTPUT_FILE="security_weaknesses.csv"
+
+# Run your security analysis script and save the output to the CSV file
+python your_security_analysis_script.py > "$OUTPUT_FILE"
+
+# Check if any Python files are being committed
+changed_files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.py$')
+
+if [ -n "$changed_files" ]; then
+    # Print a message and exit with a non-zero status if the CSV file contains any weaknesses
+    if grep -q "WEAKNESS_PATTERN" "$OUTPUT_FILE"; then
+        echo "Security weaknesses found. Please fix them before committing."
+        exit 1
+    fi
+fi
+
+# If no weaknesses are found, the script will exit with a zero status, and the commit will proceed
+exit 0
