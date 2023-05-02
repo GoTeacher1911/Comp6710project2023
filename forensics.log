@@ -1,0 +1,42 @@
+import logging
+
+logging.basicConfig(filename='forensics.log', level=logging.DEBUG)
+
+def method1(arg1, arg2):
+    try:
+        # Your method's original code here
+        pass
+    except Exception as e:
+        logging.exception("Error in method1: %s", e)
+        raise
+
+def method2(arg1, arg2, arg3):
+    try:
+        pass
+    except Exception as e:
+        logging.exception("Error in method2: %s", e)
+        raise
+
+def method3(arg1):
+    try:
+      
+        pass
+    except Exception as e:
+        logging.exception("Error in method3: %s", e)
+        raise
+
+def method4(arg1, arg2):
+    try:
+        
+        pass
+    except Exception as e:
+        logging.exception("Error in method4: %s", e)
+        raise
+
+def method5(arg1, arg2, arg3, arg4):
+    try:
+        
+        pass
+    except Exception as e:
+        logging.exception("Error in method5: %s", e)
+        raise
